@@ -1,6 +1,7 @@
 # Solo Training 2 Report
 
 Author: Die_Welle
+
 Time: 07 Mar 2018
 
 This report is for the second solo training of AY17/18 Sem 2.
@@ -16,7 +17,9 @@ The contest consistes of two questions and the duration is 1 hour. Both the ques
 ##### Problem A Little Queens
 &nbsp;
 This problem is very similar to the traditional eight queens problem. However, the problem tests our ability to optimize the code by setting a very tight time limit (0.75s).
+
 The most important optimization is we need to judge whether the current position is confilict with the former columns and two diagonals since we place the queens row by row and they won't be in the same row.
+
 We define bool vis[3][N]. Use vis[0][i] to judge whether the current position i will conflict in the column. vis[1][i] and vis[2][i] decide whether the current position will confilict in the two diagonals.
 
 **Code:**
@@ -54,8 +57,11 @@ int main() {
 ##### Problem B Divide and conquer
 &nbsp;
 This problem is much harder than the first problem. Since the problem asks us to divide all points into two parts at first, it's easy for us to come up with an algorithm to try to find a subset in all points. However, with time limit only 0.25s, it will definitely result in time limit exceeded.
+
 The right solution is to use bruteforce to enumerate all transformation possibilities, both rotation and translation. Then we will add an edge if after transformation, one vertex goes to another vertex's position. Since every vertex can at most have one "father" and one "son", there will be several chains and circuits in our graph.
+
 Next we prove that the transformation is valid if and only if all chains/circuits consist of even vertices. Suppose all chains/circuits consist of even vertices, then we can simply choose odd indexed vertices to move and others keep still, which is obvious a valid movement. When there exists a chain/circuit consists of odd vertices, then obvious there will always be one vertex left and the movement cannot be valid.
+
 So after we build the graph, we just have to check whether all chains/circuits are made of even nodes.
 
 **Code:**
